@@ -1,16 +1,19 @@
 {
-  "name": "eth-dapps-sample",
+  "name": "eth-dapp-sample",
   "version": "1.0.0",
-  "description": "",
+  "private": true,
+  "description": "Ethereum Dapp Sample/Template",
   "scripts": {
+    "start": "yarn workspace front start",
+    "build": "yarn workspace front build",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "keywords": [],
+  "workspaces": [
+    "packages/*"
+  ],
+  "keywords": ["Ethereum", "react", "truffle", "dapps"],
   "author": "Yukishige Nakajo <nakajo@chaintope.com> (http://y-nakajo.hatenablog.com/)",
-  "license": "ISC",
+  "license": "MIT",
   "dependencies": {
-    "@openzeppelin/contracts": "^5.0.0",
-    "truffle": "^5.11.5"
-  },
-  "devDependencies": {}
+  }
 }
