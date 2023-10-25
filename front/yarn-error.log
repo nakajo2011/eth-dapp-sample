@@ -1,0 +1,45 @@
+Arguments: 
+  /Users/nakajo/.nvm/versions/node/v18.17.1/bin/node /Users/nakajo/.nvm/versions/node/v18.17.1/bin/yarn add -D parcel-builder
+
+PATH: 
+  /Users/nakajo/google-cloud-sdk/bin:/Users/nakajo/.nvm/versions/node/v18.17.1/bin:/usr/local/opt/go@1.13/bin:/Users/nakajo/.cargo/bin:/Users/nakajo/.rbenv/shims:Unknown command: "bin"
+  
+  To see a list of supported npm commands, run:
+    npm help:/Users/nakajo/bin:/Users/nakajo/Downloads/adt-bundle-mac-x86_64-20140702/sdk/tools/:/usr/local/opt/openssl/bin:/usr/local/bin:/System/Cryptexes/App/usr/bin:/usr/bin:/bin:/usr/sbin:/sbin:/opt/X11/bin:/Library/Apple/usr/bin:/Library/Frameworks/Mono.framework/Versions/Current/Commands:/var/run/com.apple.security.cryptexd/codex.system/bootstrap/usr/local/bin:/var/run/com.apple.security.cryptexd/codex.system/bootstrap/usr/bin:/var/run/com.apple.security.cryptexd/codex.system/bootstrap/usr/appleinternal/bin:/Users/nakajo/work/go/bin:/Users/nakajo/Downloads/flex_sdk_3.5.0.12683B/bin/:/Users/nakajo/work/hackathon/flutter/bin/:/Users/nakajo/Library/Android/sdk//platform-tools/:/Users/nakajo/.local/bin:/Users/nakajo/.pub-cache/bin:/Users/nakajo/.local/bin
+
+Yarn version: 
+  1.22.19
+
+Node version: 
+  18.17.1
+
+Platform: 
+  darwin x64
+
+Trace: 
+  Error: https://registry.yarnpkg.com/parcel-builder: Not found
+      at params.callback [as _callback] (/Users/nakajo/.nvm/versions/node/v18.17.1/lib/node_modules/yarn/lib/cli.js:66145:18)
+      at self.callback (/Users/nakajo/.nvm/versions/node/v18.17.1/lib/node_modules/yarn/lib/cli.js:140890:22)
+      at Request.emit (node:events:514:28)
+      at Request.<anonymous> (/Users/nakajo/.nvm/versions/node/v18.17.1/lib/node_modules/yarn/lib/cli.js:141862:10)
+      at Request.emit (node:events:514:28)
+      at IncomingMessage.<anonymous> (/Users/nakajo/.nvm/versions/node/v18.17.1/lib/node_modules/yarn/lib/cli.js:141784:12)
+      at Object.onceWrapper (node:events:628:28)
+      at IncomingMessage.emit (node:events:526:35)
+      at endReadableNT (node:internal/streams/readable:1359:12)
+      at process.processTicksAndRejections (node:internal/process/task_queues:82:21)
+
+npm manifest: 
+  {
+    "name": "front",
+    "version": "1.0.0",
+    "main": "index.js",
+    "author": "Yukishige Nakajo <nakajo@chaintope.com> (http://y-nakajo.hatenablog.com/)",
+    "license": "MIT"
+  }
+
+yarn manifest: 
+  No manifest
+
+Lockfile: 
+  No lockfile
