@@ -8,7 +8,7 @@ created at: 2023/10/25
 - React: https://ja.legacy.reactjs.org/
 - Parcel: https://parceljs.org/
 
-# Getting Stated
+# Getting Started
 ※Windowsを利用している場合はWSL2＋Ubuntu環境で実行してください。
 
 1. Install NVM
