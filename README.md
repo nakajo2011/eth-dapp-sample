@@ -31,9 +31,20 @@ nvm install v18 --lts
 npm install -g yarn 
 ```
 
-4. Install dependencies
+4. Clone this repository
+このリポジトリをcloneします。  
+```bash
+git clone https://github.com/nakajo2011/eth-dapp-sample.git
+```
+
+5. Install dependencies
 依存ライブラリをyarnで全てインストールします。  
 ```bash
 yarn install
 ```
 
+6. Start app
+依存ライブラリが問題なくインストールされたかチェックするために、サンプル画面が表示されるか試します。
+```bash
+yarn start
+```
