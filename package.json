@@ -8,9 +8,10 @@
     "build": "yarn workspace front build",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "workspaces": [
-    "packages/*"
-  ],
+  "workspaces": {
+    "packages": ["packages/*"],
+    "nohoist": ["**/contracts"]
+  },
   "keywords": ["Ethereum", "react", "truffle", "dapps"],
   "author": "Yukishige Nakajo <nakajo@chaintope.com> (http://y-nakajo.hatenablog.com/)",
   "license": "MIT",
