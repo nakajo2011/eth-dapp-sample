@@ -10,7 +10,7 @@
   },
   "workspaces": {
     "packages": ["packages/*"],
-    "nohoist": ["**/contracts"]
+    "nohoist": ["**/contracts", "**/contracts/**"]
   },
   "keywords": ["Ethereum", "react", "truffle", "dapps"],
   "author": "Yukishige Nakajo <nakajo@chaintope.com> (http://y-nakajo.hatenablog.com/)",
