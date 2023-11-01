@@ -1,5 +1,5 @@
 
-# シンプルなDappsの作成手順
+# 3: SimpleなDappsの作成
 
 Dappsでは主にReactやNext.jsを用いてclientアプリをSPAで実装します。これらのアプリから、EthereumやContractの操作を行います。
 特に最近ではMetamaskと連携してEthereumに接続を行うことがデファクトスタンダードとなっています。
@@ -7,7 +7,7 @@ Metamaskはいわゆるwalletアプリであり、ChromeやFireFoxといった�
 
 以下では最初にReactを用いてSPA(Single Page Application)を作成し、その後にMetamaskと連携してアカウント情報を取得する手順を説明します。
 
-## 1. **Reactアプリケーションのセットアップ**:
+## 1. **ReactでSPAを作成**:
 
 ### 1-1. **ディレクトリの移動:**
 - ターミナルを開き、`packages/front`ディレクトリに移動します。
@@ -190,6 +190,7 @@ function App() {
         <Menu />
         <Routes>
           <Route path="/" element={<Home />} />
+          <Route path="/detail" element={<Detail />} />
         </Routes>
       </Router>
     </MetaMaskProvider>
@@ -267,3 +268,108 @@ yarn start
 ```
 
 実行前にあらかじめ、[Metamaskの公式ページ](https://metamask.io/download/)にアクセスしてChromeブラウザにMetamaskプラグインをインストールしておいてください。
+
+## 3. addressコピーボタンの追加
+
+最後に少しだけ便利機能を実装します。
+
+ユーザーがアカウントのアドレスを簡単にコピーできるように、コピーアイコンボタンを追加します。
+
+### 3-1. iconライブラリの追加:
+
+iconを扱えるようにするために`@mui/icons-material`ライブラリをインストールします。
+
+```bash
+yarn add @mui/icons-material
+```
+
+### 3-2. 必要なコンポーネントのインポート:
+
+```javascript
+import ContentCopyIcon from '@mui/icons-material/ContentCopy';
+import { IconButton } from '@mui/material';
+```
+上記のコードで`ContentCopyIcon`と`IconButton`コンポーネントをインポートします。これにより、コピー機能のアイコンボタンを表示できます。
+
+### 3-3. `copyAddressToClipboard`関数の定義:
+```javascript
+const copyAddressToClipboard = () => {
+    navigator.clipboard.writeText(account);
+};
+```
+`copyAddressToClipboard`関数を定義し、この関数は`navigator.clipboard.writeText`メソッドを使用してアカウントのアドレスをクリップボードにコピーします。
+
+### 3-4. アイコンボタンの追加:
+```javascript
+<div style={{ display: 'flex', alignItems: 'center' }}>
+    <Typography variant="body1">Address: {account}</Typography>
+    <IconButton onClick={copyAddressToClipboard}>
+        <ContentCopyIcon />
+    </IconButton>
+</div>
+```
+アカウントアドレスの横にコピー用のアイコンボタンを追加しています。ユーザーがこのボタンをクリックすると、`copyAddressToClipboard`関数が呼び出され、アドレスがクリップボードにコピーされます。
+
+### 3-5. 修正後の`Home.js`の全てのコード:
+
+上記修正を施した最終的なHome.jsのコードを提示します。
+
+**src/components/Home.js**
+```javascript
+import React from 'react';
+import { useSDK } from '@metamask/sdk-react';
+import { Button, Card, CardContent, Typography } from '@mui/material';
+import BigNumber from 'bignumber.js';
+import ContentCopyIcon from '@mui/icons-material/ContentCopy';
+import { IconButton } from '@mui/material';
+
+function Home() {
+    const { sdk, connected, connecting, provider, chainId, account, balance } = useSDK();
+
+    const connect = async () => {
+        if (!connected && !connecting && sdk) {
+            await sdk.connect();
+        }
+    };
+
+    const weiToEth = (wei) => {
+        const weiBN = new BigNumber(wei, 16);  // Convert hex string to BN instance
+        const divisor = new BigNumber(10).pow(new BigNumber(18));  // 1 Ether = 10^18 Wei
+        return weiBN.div(divisor).decimalPlaces(5);  // Convert Wei to Ether
+    };
+
+    const formattedBalance = balance ? weiToEth(balance) : null;
+
+    const copyAddressToClipboard = () => {
+        navigator.clipboard.writeText(account);
+    };
+
+    return (
+        <div style={{ padding: '20px' }}>
+            <Button variant="contained" color="primary" onClick={connect} disabled={connected || connecting}>
+                Connect to MetaMask
+            </Button>
+            {connected && account && (
+                <div>
+                    <Card style={{ marginTop: '20px' }}>
+                        <CardContent>
+                            <Typography variant="h5">Account Details</Typography>
+                            <div style={{ display: 'flex', alignItems: 'center' }}>
+                                <Typography variant="body1">Address: {account}</Typography>
+                                <IconButton onClick={copyAddressToClipboard}>
+                                    <ContentCopyIcon />
+                                </IconButton>
+                            </div>
+                            <Typography variant="body1">Balance: {formattedBalance ? `${formattedBalance} ETH` : 'Loading...'}</Typography>
+                        </CardContent>
+                    </Card>
+                </div>
+            )}
+        </div>
+    );
+}
+
+export default Home;
+```
+
+[2.SepoliaテストネットにContractをデプロイ](./2_DeploySepolia.md) &lt;&lt;prev next&gt;&gt; [4. ERC20Token Dappsの実装](./4_ImplementTokenDapps.md)

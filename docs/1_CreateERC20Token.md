@@ -1,3 +1,5 @@
+# 1: ERC20Token Contractの作成
+
 TruffleとOpenZeppelinを使用してERC20トークンを作成しする手順を説明します。また、作成したERC20トークンをtruffleから操作する方法も説明します。
 
 ### 1. **プロジェクトのセットアップ:**
@@ -102,3 +104,6 @@ truffle(develop)> balance1.toString()
 ```
 
 これらの手順に従うことで、TruffleとOpenZeppelinを使用してERC20トークンを作成し、ローカルの開発ノードにデプロイし、トークンの送金とバランスの確認を行うことができます。
+
+next&gt;&gt; [2.SepoliaテストネットにContractをデプロイ](./2_DeploySepolia.md)
+

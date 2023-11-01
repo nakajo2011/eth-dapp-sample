@@ -1,4 +1,6 @@
-このドキュメントでは作成したMyTokenをSepoliaテストネットにデプロイする手順を説明します。
+# 2: SepoliaテストネットにContractをデプロイ
+
+[1.ERC20Token Contractの作成](./1_CreateERc20Token.md)で作成したMyTokenをSepoliaテストネットにデプロイする手順を説明します。
 Sepoliaテストネットにデプロイするためには手数料となるSepoliaETHが必要です。そのため、まず最初にWalletアプリであるMetamaskをインストールし、SepoliaETHを入手する手順を説明します。
 
 次に、Sepoliaに接続するためにInfura.ioのサービスに登録して利用する手段を説明します。
@@ -62,3 +64,5 @@ $ yarn truffle migrate --network sepolia
 - [Sepolia Testnet Etherscan](https://sepolia.etherscan.io/)にアクセスし、Transaction HashまたはContract Addressを使ってデプロイメントを確認します。
 
 ![etherscan](images/sepolia_etherscan.png)
+
+[1.ERC20Token Contractの作成](./1_CreateERc20Token.md) &lt;&lt;prev next&gt;&gt; - [3.SimpleなDappsの作成](./CreateSimpleDapps.md)
