@@ -3,9 +3,9 @@
 ERC20 Tokenの残高確認と送金ができる機能を持つDappsの作成方法について説明します。
 なお、事前に以下の手順に従ってERC20Token Contractの作成とデプロイ、それからシンプルなDappsを作成済みである前提で進めます。
 
-- [1.ERC20Token Contractの作成](./1_CreateERc20Token.md)
+- [1.ERC20Token Contractの作成](./1_CreateERC20Token.md)
 - [2.SepoliaテストネットにContractをデプロイ](./2_DeploySepolia.md)
-- [3.SimpleなDappsの作成](./CreateSimpleDapps.md)
+- [3.SimpleなDappsの作成](./3_CreateSimpleDapps.md)
 
 これらの手順は全て、`packages/front`以下で作業する想定で記載しております。
 
