@@ -333,7 +333,7 @@ function Home() {
     };
 
     const weiToEth = (wei) => {
-        const weiBN = new BigNumber(wei, 16);  // Convert hex string to BN instance
+        const weiBN = new BigNumber(wei.substring(2), 16);  // Convert hex string to BN instance
         const divisor = new BigNumber(10).pow(new BigNumber(18));  // 1 Ether = 10^18 Wei
         return weiBN.div(divisor).decimalPlaces(5);  // Convert Wei to Ether
     };
