@@ -1,6 +1,6 @@
-// import a CSS module
-import classes from './main.css';
+import { createRoot } from "react-dom/client";
+import App from "./App";
 
-export default () => {
-    console.log(classes.main);
-};
+const container = document.getElementById("root");
+const root = createRoot(container)
+root.render(<App />);

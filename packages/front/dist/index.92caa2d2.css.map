@@ -1,1 +1,0 @@
-{"mappings":"ACAA","sources":["index.92caa2d2.css","packages/front/src/main.css"],"sourcesContent":[".main {\n  color: red;\n}\n\n/*# sourceMappingURL=index.92caa2d2.css.map */\n",".main {\n    /* Reference an image file */\n    color: red;\n  }"],"names":[],"version":3,"file":"index.92caa2d2.css.map"}
