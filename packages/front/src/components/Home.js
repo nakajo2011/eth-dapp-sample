@@ -4,6 +4,7 @@ import { Button, Card, CardContent, Typography } from '@mui/material';
 import BigNumber from 'bignumber.js';
 import ContentCopyIcon from '@mui/icons-material/ContentCopy';
 import { IconButton } from '@mui/material';
+import TokenComponent from "./TokenComponent";
 
 function Home() {
     const { sdk, connected, connecting, provider, chainId, account, balance } = useSDK();
@@ -45,6 +46,7 @@ function Home() {
                             <Typography variant="body1">Balance: {formattedBalance ? `${formattedBalance} ETH` : 'Loading...'}</Typography>
                         </CardContent>
                     </Card>
+                    <TokenComponent />  {/* Add this line */}
                 </div>
             )}
         </div>
