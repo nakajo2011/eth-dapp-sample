@@ -181,7 +181,6 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import { MetaMaskProvider } from '@metamask/sdk-react';
 import Menu from './components/Menu';
 import Home from './components/Home';
-import Detail from './components/Detail';
 
 function App() {
   return (
@@ -190,7 +189,6 @@ function App() {
         <Menu />
         <Routes>
           <Route path="/" element={<Home />} />
-          <Route path="/detail" element={<Detail />} />
         </Routes>
       </Router>
     </MetaMaskProvider>
