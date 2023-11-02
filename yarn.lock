@@ -1015,7 +1015,7 @@
     react-dom "^18.2.0"
     react-i18next "^13.2.2"
 
-"@metamask/sdk-react@^0.10.0":
+"@metamask/sdk-react@^0.10.1":
   version "0.10.1"
   resolved "https://registry.yarnpkg.com/@metamask/sdk-react/-/sdk-react-0.10.1.tgz#7f7b1a17ec7c03906a73279dbeb405525b9f1d17"
   integrity sha512-321QLnrKjLlM19Jo6BTTmUZejlfkLnxT2aKyeMI2sStrS4/8a5yHLsiba+k66rkaJPoL1qQGEOO/cMTT2EaZsA==
@@ -3136,7 +3136,7 @@ bignumber.js@7.2.1:
   resolved "https://registry.yarnpkg.com/bignumber.js/-/bignumber.js-7.2.1.tgz#80c048759d826800807c4bfd521e50edbba57a5f"
   integrity sha512-S4XzBk5sMB+Rcb/LNcpzXr57VRTxgAvaAEDAl1AwRx27j00hT84O6OkteE7u8UB3NuaaygCRrEpqox4uDOrbdQ==
 
-bignumber.js@^9.0.0, bignumber.js@^9.0.1:
+bignumber.js@^9.0.0, bignumber.js@^9.0.1, bignumber.js@^9.1.2:
   version "9.1.2"
   resolved "https://registry.yarnpkg.com/bignumber.js/-/bignumber.js-9.1.2.tgz#b7c4242259c008903b13707983b5f4bbd31eda0c"
   integrity sha512-2/mKyZH9K85bzOEfhXDBFZTGd1CTs+5IHpeFQo9luiBG7hghdC851Pj2WAhb6E3R6b9tZj/XKhbg4fum+Kepug==
