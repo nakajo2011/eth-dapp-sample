@@ -48,3 +48,11 @@ yarn install
 ```bash
 yarn start
 ```
+
+# How To Use This Repository
+
+このリポジトリはdappsを作成するためのtemplateと手順を提供するためのものです。
+
+dapps作成手順は以下のドキュメントを参照ください。
+
+- [1.ERC20Token Contractの作成](docs/1_CreateERC20Token.md)
