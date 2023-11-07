@@ -57,3 +57,29 @@ yarn start
 dapps作成手順は以下のドキュメントを参照ください。
 
 - [1.ERC20Token Contractの作成](docs/1_CreateERC20Token.md)
+
+# How to use implemented branch
+ContractとDappsをそれぞれ作成完了した時点のコードを以下の２つのbranchに保存しています。
+
+- 1_erc20token
+- 2_create_dapps
+
+上記２つのリポジトリをチェックアウトして利用する方法を説明します。
+
+1. 既存リポジトリの変更点を全てクリア
+```bash
+git reset HEAD --hard
+```
+
+2. branchをチェックアウト
+指定したbranchに切り替えます。ここでは`1_erc20token`のbranchに切り替えています。
+
+`git checkout`の詳細は以下のドキュメントを参照 https://www.atlassian.com/ja/git/tutorials/using-branches/git-checkout
+```bash
+git checkout -b 1_erc20token origin/1_erc20token
+```
+
+3. 依存ライブラリの再インストール
+```bash
+yarn install
+```
