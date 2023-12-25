@@ -11,7 +11,17 @@ created at: 2023/10/25
 # Getting Started
 ※Windowsを利用している場合はWSL2＋Ubuntu環境で実行してください。
 
-1. Install NVM
+1. Gitのインストール
+
+macOSを利用している人はbrewを使ってインストールしてください。
+```bash
+brew install git
+```
+
+Linuxを利用している人は以下のサイトを参照してください。
+https://git-scm.com/download/linux
+
+2. Install NVM
 公式に従い以下のコマンドでインストール
 ```bash
 curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.5/install.sh | bash
@@ -19,32 +29,32 @@ curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.5/install.sh | bash
 
 詳細は公式を参照: https://github.com/nvm-sh/nvm#install--update-script 
 
-2. Install node v18.x LTS version
+3. Install node v18.x LTS version
 
 ```bash
 nvm install v18 --lts
 ```
 
-3. Install Yarn in global
+4. Install Yarn in global
 
 ```bash
 npm install -g yarn 
 ```
 
-4. Clone this repository
+5. Clone this repository
 このリポジトリをcloneします。  
 ```bash
 git clone https://github.com/nakajo2011/eth-dapp-sample.git
 ```
 
-5. Install dependencies
+6. Install dependencies
 cloneしたディレクトリに移動して、依存ライブラリをyarnで全てインストールします。  
 ```bash
 cd eth-dapp-sample/
 yarn install
 ```
 
-6. Start app
+7. Start app
 依存ライブラリが問題なくインストールされたかチェックするために、サンプル画面が表示されるか試します。
 ```bash
 yarn start
