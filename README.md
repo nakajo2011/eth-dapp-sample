@@ -48,9 +48,8 @@ git clone https://github.com/nakajo2011/eth-dapp-sample.git
 ```
 
 6. Install dependencies
-cloneしたディレクトリに移動して、依存ライブラリをyarnで全てインストールします。  
+依存ライブラリをyarnで全てインストールします。  
 ```bash
-cd eth-dapp-sample/
 yarn install
 ```
 
