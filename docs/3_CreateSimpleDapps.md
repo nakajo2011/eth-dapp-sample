@@ -136,8 +136,8 @@ Reactアプリを簡単に起動できる様にショートカットコマンド
 
 ```json
 "scripts": {
-    "start": "parcel index.html --open",
-    "build": "parcel build index.html",
+    "start": "parcel src/index.html --open",
+    "build": "parcel build src/index.html",
     "clean": "rm -rf ../../.parcel-cache dist/*"
 }
 ```
