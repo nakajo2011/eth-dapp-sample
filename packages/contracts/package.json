@@ -8,9 +8,9 @@
   "keywords": [],
   "author": "Yukishige Nakajo <nakajo@chaintope.com> (http://y-nakajo.hatenablog.com/)",
   "license": "MIT",
-  "dependencies": {
-    "@openzeppelin/contracts": "^5.0.0",
-    "truffle": "^5.11.5"
-  },
-  "devDependencies": {}
+  "dependencies": {},
+  "devDependencies": {
+    "@openzeppelin/contracts": "^5.0.2",
+    "hardhat": "^2.22.9"
+  }
 }
