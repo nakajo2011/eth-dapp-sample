@@ -4,9 +4,20 @@ EthereumのDappsを作成するための最低限のサンプルです。
 created at: 2023/10/25 
 
 ## Dependencies
-- Truffle: https://trufflesuite.com/docs/truffle/
-- React: https://ja.legacy.reactjs.org/
-- Parcel: https://parceljs.org/
+
+主な依存ライブラリは以下のとおりです。
+
+- contracts workspace (`packages/contracts/`配下)
+  - [Hardhat]
+  - [OpenZeppelin]
+- front  (`packages/front/`配下)
+  - [React]
+  - [Parcel]
+
+[Hardhat]: https://hardhat.org/
+[OpenZeppelin]: https://www.openzeppelin.com/
+[React]: https://ja.legacy.reactjs.org/
+[Parcel]: https://parceljs.org/
 
 ## Getting Started
 ※Windowsを利用している場合はWSL2＋Ubuntu環境で実行してください。
@@ -21,10 +32,10 @@ brew install git
 Linuxを利用している人は以下のサイトを参照してください。
 https://git-scm.com/download/linux
 
-### 2. Install NVM
+### 2. NVMのインストール
 公式に従い以下のコマンドでインストール
 ```bash
-curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.5/install.sh | bash
+curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.40.1/install.sh | bash
 ```
 
 詳細は公式を参照: https://github.com/nvm-sh/nvm#install--update-script 
