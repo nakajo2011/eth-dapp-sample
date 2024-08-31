@@ -40,11 +40,23 @@ curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.40.1/install.sh | bash
 
 詳細は公式を参照: https://github.com/nvm-sh/nvm#install--update-script 
 
-### 3. Install node v18.x LTS version
+### 3. Node.js のインストール
+
+[Hardhat 公式ドキュメント][Hardhat-setting-up-the-environment]によると、Node.js `>=18.0` が推奨とのことです。インストールされているNode.jsのバージョンは以下のコマンドで確認できます。
 
 ```bash
-nvm install v18 --lts
+$ node --version
 ```
+
+該当するNode.jsがインストールされていない場合は、NVMを使って Node.js 22 をインストールします。
+
+```bash
+nvm install 22
+nvm use 22
+nvm alias default 22
+```
+
+[Hardhat-setting-up-the-environment]: https://hardhat.org/tutorial/setting-up-the-environment
 
 ### 4. Install Yarn in global
 
