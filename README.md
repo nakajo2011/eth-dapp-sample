@@ -51,9 +51,7 @@ $ node --version
 該当するNode.jsがインストールされていない場合は、NVMを使って Node.js 22 をインストールします。
 
 ```bash
-nvm install 22
-nvm use 22
-nvm alias default 22
+nvm install 22.6
 ```
 
 [Hardhat-setting-up-the-environment]: https://hardhat.org/tutorial/setting-up-the-environment
