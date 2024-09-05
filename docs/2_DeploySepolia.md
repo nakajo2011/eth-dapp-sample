@@ -18,7 +18,7 @@
 
 - [MetaMask の公式ウェブサイト](https://metamask.io/download.html)または Chrome ウェブストアから MetaMask プラグインをダウンロードしてインストールします。
 - [MetaMask] を開き、アカウントを作成します。アカウント作成時に表示される mnemonic（12 の単語）をメモしておきます。
-- 後に秘密鍵が必要となるため、確認しておきます。
+- 後に秘密鍵が必要となるため、確認しておきます。秘密鍵の取得方法は以下の画像を参考にしてください。
 
 ![image](https://github.com/user-attachments/assets/e33fa243-7df0-494f-a0f3-967cc9e1ed02)
 
