@@ -16,20 +16,20 @@ yarn add @nomicfoundation/hardhat-web3-v4
 
 ## 2. **ERC20トークンのABIの保存**:
 
-まず最初に、`src/contracts`ディレクトリを作成し、その中にhardhatで生成された`../contracts/artifacts/contracts/MyToken.sol/MyToken.json`をコピーします。
+まず最初に、`src/contracts`ディレクトリを作成し、その中にhardhatで生成された`../contracts/artifacts/@openzeppelin/contracts/token/ERC20/ERC20.sol/ERC20.json`をコピーします。
 
-この`MyToken.json`ファイルの中に、Javascriptやその他のクライアントライブラリからContractにアクセスするためのインターフェース情報（メソッド名やメソッドのID、必要なパラメータ情報など）が含まれています。これらの情報のことをABI（Application Binary Interface)と呼びます。
+この`ERC20.json`ファイルの中に、Javascriptやその他のクライアントライブラリからContractにアクセスするためのインターフェース情報（メソッド名やメソッドのID、必要なパラメータ情報など）が含まれています。これらの情報のことをABI（Application Binary Interface)と呼びます。
 
-以下のコマンドを実行してディレクトリを作成し、`MyToken.json`ファイルをコピーしてください。
+以下のコマンドを実行してディレクトリを作成し、`ERC20.json`ファイルをコピーしてください。
 
 ```bash
 mkdir src/contracts
-cp ../contracts/artifacts/contracts/MyToken.sol/MyToken.json src/contracts/
+cp ../contracts/artifacts/@openzeppelin/contracts/token/ERC20/ERC20.sol/ERC20.json src/contracts/
 ```
 
 なお、ERC20はインターフェース仕様が標準化されているため、以下の内容でファイルを直接生成しても良いです。
 
-**src/contracts/MyToken.json**
+**src/contracts/ERC20.json**
 ```json
 {
   "abi": [
@@ -179,7 +179,7 @@ import { useSDK } from '@metamask/sdk-react';
 import Web3 from 'web3';
 
 import { Button, Card, CardContent, TextField, Typography, Divider, List, ListSubheader, ListItem } from '@mui/material';
-import MyToken from '../contracts/MyToken.json';  // Assume the path to MyToken.json is correct
+import ERC20 from '../contracts/ERC20.json';  // Assume the path to ERC20.json is correct
 
 function TokenComponent() {
     const { connected, provider, account } = useSDK();
@@ -192,7 +192,7 @@ function TokenComponent() {
     const loadContract = async () => {
         if (connected && provider && contractAddress) {
             const web3 = new Web3(provider);
-            const contract = new web3.eth.Contract(MyToken.abi, contractAddress);
+            const contract = new web3.eth.Contract(ERC20.abi, contractAddress);
             try {
                 const balance = await contract.methods.balanceOf(account).call();
                 setTokenBalance(balance);
@@ -206,7 +206,7 @@ function TokenComponent() {
     const handleTransfer = async () => {
         if (connected && provider && contractAddress && recipientAddress && transferAmount) {
             const web3 = new Web3(provider);
-            const contract = new web3.eth.Contract(MyToken.abi, contractAddress);
+            const contract = new web3.eth.Contract(ERC20.abi, contractAddress);
             try {
                 const calldata = contract.methods.transfer(recipientAddress, transferAmount).encodeABI()
                 const result = await contract.methods.transfer(recipientAddress, transferAmount)
@@ -304,7 +304,7 @@ loadContractメソッドは`Contract Address`を入力して、`Load Contract`�
     const loadContract = async () => {
         if (connected && provider && contractAddress) {
             const web3 = new Web3(provider);
-            const contract = new web3.eth.Contract(MyToken.abi, contractAddress);
+            const contract = new web3.eth.Contract(ERC20.abi, contractAddress);
             try {
                 const balance = await contract.methods.balanceOf(account).call();
                 setTokenBalance(balance);
@@ -342,7 +342,7 @@ return (
     const handleTransfer = async () => {
         if (connected && provider && contractAddress && recipientAddress && transferAmount) {
             const web3 = new Web3(provider);
-            const contract = new web3.eth.Contract(MyToken.abi, contractAddress);
+            const contract = new web3.eth.Contract(ERC20.abi, contractAddress);
             try {
                 const calldata = contract.methods.transfer(recipientAddress, transferAmount).encodeABI()
                 const result = await contract.methods.transfer(recipientAddress, transferAmount)
