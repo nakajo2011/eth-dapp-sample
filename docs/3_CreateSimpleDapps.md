@@ -136,8 +136,8 @@ Reactアプリを簡単に起動できる様にショートカットコマンド
 
 ```json
 "scripts": {
-    "start": "parcel index.html --open",
-    "build": "parcel build index.html",
+    "start": "parcel src/index.html --open",
+    "build": "parcel build src/index.html",
     "clean": "rm -rf ../../.parcel-cache dist/*"
 }
 ```
@@ -266,6 +266,12 @@ yarn start
 ```
 
 実行前にあらかじめ、[Metamaskの公式ページ](https://metamask.io/download/)にアクセスしてChromeブラウザにMetamaskプラグインをインストールしておいてください。
+
+> [!TIP]  
+> 実行時に`@parcel/bundler-default: Expected content key 1e8cafef6f979bdd to exist`といったエラーが出る場合は、以下のコマンドでキャッシュを削除してから再度実行してください。
+> ```bash
+> yarn clean
+> ```
 
 ## 3. addressコピーボタンの追加
 

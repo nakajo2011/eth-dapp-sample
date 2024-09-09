@@ -1,25 +1,56 @@
 # 1: ERC20Token Contractの作成
 
-TruffleとOpenZeppelinを使用してERC20トークンを作成しする手順を説明します。また、作成したERC20トークンをtruffleから操作する方法も説明します。
+Hardhat と OpenZeppelin を使用して ERC20 トークンを作成しする手順を説明します。また、作成した ERC20 トークンを Hardhat から操作する方法も説明します。
 
-### 1. **プロジェクトのセットアップ:**
+## 1. プロジェクトのセットアップ
 
-1.1 **Truffleプロジェクトの初期化:**
+### 1-1. 依存ライブラリのインストール
+
 ```bash
 $ cd packages/contracts
-$ yarn truffle init -y .
+$ yarn add --dev hardhat@2.22.3
+$ yarn add --dev @openzeppelin/contracts@5.0.2
 ```
 
-1.2 **OpenZeppelinのインストール:**
+バージョンが変わると構成が変わったりなどでコンパイルが通らなくなることがあるので、依存ライブラリは記事執筆時にインストールしたバージョンを指定しています。
+
+### 1.2. Hardhat プロジェクトの初期化
+
+以下の初期化コマンドを実行すると、必要なフォルダや設定ファイル、依存ライブラリなどを自動で作成してくれます。
+
 ```bash
-$ yarn add @openzeppelin/contracts
+$ cd packages/contracts
+$ npx hardhat init
 ```
 
-### 2. **ERC20トークンの作成:**
+初期化コマンドを実行すると Hardhat プロジェクトの構成を聞かれます。ここでは先頭の JavaScript プロジェクトを選択します。
 
-2.1 **トークンコントラクトの作成:**
+![](https://github.com/user-attachments/assets/7118207a-90fc-4582-b034-e27ec904cdea)
+
+Enter キーで選択すると、次にプロジェクトルートのディレクトリを聞かれます。特段理由がなければ変更は不要です。
+
+![](https://github.com/user-attachments/assets/fc9a77b4-733c-4be5-9f99-02411da71a9d)
+
+次は.gitignore ファイルを作成していいかを聞かれる。特段理由がなければ `y` を選択します。
+
+![](https://github.com/user-attachments/assets/24b222b6-c83e-4d6f-b52c-c35803b62459)
+
+最後に 依存ライブラリをインストールして良いか聞かれます。Hardhat の基本的な機能を使うのに必要なものも多く含まれているので、特段理由がなければ `y` を選択します。
+
+![](https://github.com/user-attachments/assets/c75cb0d9-28f1-41db-9fc9-71d1ecb20a78)
+
+依存ライブラリ のインストールが終わればプロジェクト作成は完了です。
+
+## 2. ERC20 トークンの作成
+
+転送可能なトークンを実装するシンプルなスマートコントラクト(ERC20Token Contract)を作成し、Hardhat 内蔵のローカルノードにデプロイします。
+
+### 2-1. コントラクトの作成
+
 `contracts/MyToken.sol`という名前の新しいファイルを作成し、以下の内容をコピーして貼り付けます。
+
 ```solidity
+// SPDX-License-Identifier: MIT
 pragma solidity ^0.8.0;
 
 import "@openzeppelin/contracts/token/ERC20/ERC20.sol";
@@ -31,79 +62,78 @@ contract MyToken is ERC20 {
 }
 ```
 
-### 3. **Migration ファイルの作成:**
+### 2-2. コントラクトのコンパイル
 
-3.1 **Migration ファイルの作成:**
-migrationファイルはcontractをEthereumネットワークにデプロイする手順を自動化し、かつ、どこまでデプロイしたかをtruffleが管理できる様にするための手順書です。
-
-`migrations/2_deploy_contracts.js`という名前の新しいファイルを作成し、以下の内容をコピーして貼り付けます。
-
-```javascript
-const MyToken = artifacts.require("MyToken");
-
-module.exports = function (deployer) {
-  deployer.deploy(MyToken, 1000000);
-};
-```
-
-### 4. **Truffle 開発ノードのセットアップとデプロイ:**
-
-4.1 **開発ノードの起動:**
-
-以下のコマンドを実行してTruffleに内蔵されているEthereumの開発用ノードを起動します。
-
-開発用ノードはGanacheという名前で、開発で利用するための便利な機能が実装されています。
+コントラクトをコンパイルするには、ターミナルで以下のコマンドを実行します。
 
 ```bash
-$ yarn truffle develop
+$ npx hardhat compile
 ```
 
-以降は、truffle console上で実行する手順を示しています。
+## 3. 開発用ノードのセットアップとデプロイ
 
-4.2 **トークンのデプロイ:**
+Hardhat では ignition というプラグインを使ってデプロイ作業を簡略・整理します。
 
-以下のコマンドを実行して、MyToken Contractを開発サーバにデプロイします。この時実行される操作は、3.1.で作成したmigrationファイルに従い順次実行されています。
+iginition はプロジェクト作成時に既にインストール済みです。
+
+### 3-1. デプロイファイルを作成
+
+コントラクトをデプロイするためのプログラムを作成します。
+
+ここでは先ほど作成した `MyToken` をデプロイするため、`ignition/modules/MyToken.js`ファイルを以下の内容で作成します。
+
+```js
+const { buildModule } = require("@nomicfoundation/hardhat-ignition/modules");
+
+const INITIAL_SUPPLY = 1_000_000_000_000_000n;
+
+module.exports = buildModule("MyTokenModule", (m) => {
+  const initialSupply = m.getParameter("initialSupply", INITIAL_SUPPLY);
+
+  const token = m.contract("MyToken", [initialSupply], {});
+
+  return { token };
+});
+```
+
+### 3-2. Ethereum の開発用ノードの起動
+
+ターミナルを開き、以下のコマンドを実行すると Hardhat に内蔵されている Ethereum の開発用ノードが起動します。
 
 ```bash
-truffle(develop)> migrate
+$ npx hardhat node
 ```
 
-### 5. **トークンバランスの確認:**
+### 3-3. トークンのデプロイ (localhost)
 
-開発ノードに`MyToken`がデプロイされました。実際にデプロイされたContractを操作してみます。
-まずは、`MyToken`のデプロイアカウントである`accounts[0]`に初期のTokenが発行されていることを確認します。
-
-5.1 **バランスの確認:**
-```bash
-truffle(develop)> let instance = await MyToken.deployed()
-truffle(develop)> let balance = await instance.balanceOf(accounts[0])
-truffle(develop)> balance.toString()
-```
-
-### 6. **トークンの送金とバランスの確認:**
-
-ここではMyTokenを別のアカウントに送金してみます。Truffleの開発ノードは初期状態で10個のアカウントが自動生成されます。
-
-最初は0番目のアカウントのみが`MyToken`を持っているので、１番目のアカウントにも送金します。
-
-6.1 **トークンの送金:**
-```bash
-truffle(develop)> await instance.transfer(accounts[1], 1000)
-```
-
-6.2 **バランスの確認:**
-
-以下で実際に1番目のアカウントに`MyToken`が送金されたか確認します。
-0番目のアカウントの`MyToken`残高が減少し、1番目のアカウントの残高が増えていることを確認してください。
+新しいターミナルを開き、以下のコマンドを実行して`MyToken`をデプロイします。
 
 ```bash
-truffle(develop)> let balance0 = await instance.balanceOf(accounts[0])
-truffle(develop)> let balance1 = await instance.balanceOf(accounts[1])
-truffle(develop)> balance0.toString()
-truffle(develop)> balance1.toString()
+$ npx hardhat ignition deploy ./ignition/modules/MyToken.js --network localhost
 ```
 
-これらの手順に従うことで、TruffleとOpenZeppelinを使用してERC20トークンを作成し、ローカルの開発ノードにデプロイし、トークンの送金とバランスの確認を行うことができます。
+![image](https://github.com/user-attachments/assets/415d3344-8609-4546-b5d9-8bbc53973af2)
+
+デプロイが成功すると `ignition/deployments/` 配下にデプロイ結果を記録したファイルが Ethereum の Chain ID ごとに生成されます。
+後から、コントラクト のアドレスや消費した手数料などを確認したい場合はここで確認することができます。
+
+```bash
+$ tree ./ignition/deployments
+./ignition/deployments
+└── chain-31337
+    ├── artifacts
+    │   ├── MyTokenModule#MyToken.dbg.json
+    │   └── MyTokenModule#MyToken.json
+    ├── build-info
+    │   └── 8c294341b5374b800e4c9b17784958de.json
+    ├── deployed_addresses.json
+    └── journal.jsonl
+
+4 directories, 5 files
+```
+
+また、開発用ノードのログでもどのような処理が実施されたのか確認できます。
+
+![hardhat-deploy-output 2024-08-30 20-11-39](https://github.com/user-attachments/assets/6f5d74cd-ec84-4324-9011-331d99cd3e98)
 
 next&gt;&gt; [2.SepoliaテストネットにContractをデプロイ](./2_DeploySepolia.md)
-
