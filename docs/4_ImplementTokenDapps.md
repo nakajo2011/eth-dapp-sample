@@ -9,9 +9,14 @@ ERC20 Tokenの残高確認と送金ができる機能を持つDappsの作成方�
 
 これらの手順は全て、`packages/front`以下で作業する想定で記載しております。
 
-### 2. **ERC20トークンのABIの保存**:
+## 1. Web3.jsのインストール
+```bash
+yarn add @nomicfoundation/hardhat-web3-v4
+```
 
-まず最初に、`src/contracts`ディレクトリを作成し、その中にtruffleで生成された`../contracts/build/contracts/ERC20.json`をコピーします。
+## 2. **ERC20トークンのABIの保存**:
+
+まず最初に、`src/contracts`ディレクトリを作成し、その中にhardhatで生成された`../contracts/artifacts/@openzeppelin/contracts/token/ERC20/ERC20.sol/ERC20.json`をコピーします。
 
 この`ERC20.json`ファイルの中に、Javascriptやその他のクライアントライブラリからContractにアクセスするためのインターフェース情報（メソッド名やメソッドのID、必要なパラメータ情報など）が含まれています。これらの情報のことをABI（Application Binary Interface)と呼びます。
 
@@ -19,7 +24,7 @@ ERC20 Tokenの残高確認と送金ができる機能を持つDappsの作成方�
 
 ```bash
 mkdir src/contracts
-cp ../contracts/build/contracts/ERC20.json src/contracts/
+cp ../contracts/artifacts/@openzeppelin/contracts/token/ERC20/ERC20.sol/ERC20.json src/contracts/
 ```
 
 なお、ERC20はインターフェース仕様が標準化されているため、以下の内容でファイルを直接生成しても良いです。
@@ -157,7 +162,7 @@ cp ../contracts/build/contracts/ERC20.json src/contracts/
 }
 ```
 
-### 3. **ERC20Tokenの管理機能を持つ新しいコンポーネントの作成**:
+## 3. **ERC20Tokenの管理機能を持つ新しいコンポーネントの作成**:
 
 次に、`src/components`ディレクトリ内に`TokenComponent.js`という新しいファイルを作成します。
 
@@ -286,11 +291,14 @@ function TokenComponent() {
 export default TokenComponent;
 ```
 
-#### 3-1.コードの簡単な説明：
+### 3-1.コードの簡単な説明：
 
 loadContractメソッドを定義して、このメソッドのなかでERC20Token Contractに接続しています。ここではTokenの残高を取得しています。ContractへのやりとりはWeb3ライブラリを利用しています。Web3ライブラリにMetamaskが提供する`provider`を指定することでweb3ライブラリとMetamaskが連携して動作できるようになります。
 
 loadContractメソッドは`Contract Address`を入力して、`Load Contract`ボタンが押されたときに実行されます。
+
+![load contract](images/load_contract_form.png)
+
 ```Javascript
 //... 省略 ...
     const loadContract = async () => {
@@ -326,6 +334,8 @@ return (
 
 この処理は、Ethereumのstateの変更が必要となるため、Ethereum上にTransactionがブロードキャストされます。そのため、Transaction実行に必要な手数料が請求されます。
 `Transfer Tokens`ボタンを押すと手数料支払いのためにMetamaskが起動して署名の確認が行われます。Metamaskの起動などの処理は全て、Web3ライブラリとMetamaskのライブラリによって自動的に行われています。
+
+![transfer_token](images/transfer_token.png)
 
 ```Javascript
 //... 省略 ...
@@ -397,7 +407,7 @@ return (
 //... 省略 ...
 ```
 
-### 4. **Homeコンポーネントの更新**:
+## 4. **Homeコンポーネントの更新**:
 
 最後に、`Home.js`ファイルを更新して、新しく作成した`TokenComponent`をインポートし、レンダリングします。
 
