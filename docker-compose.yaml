@@ -1,0 +1,27 @@
+version: '3.8'
+
+services:
+  front:
+    build:
+      context: ./packages/front
+    volumes:
+      - ./packages/front:/app
+      - front_node_modules:/app/node_modules
+    ports:
+      - "1234:1234"
+    environment:
+      - CHOKIDAR_USEPOLLING=true
+
+  hardhat:
+    build:
+      context: ./packages/contracts
+    volumes:
+      - ./packages/contracts:/app
+      - hardhat_node_modules:/app/node_modules
+    ports:
+      - "8545:8545"
+    command: sh -c "npx hardhat compile && npx hardhat node"
+
+volumes:
+  front_node_modules:
+  hardhat_node_modules:
