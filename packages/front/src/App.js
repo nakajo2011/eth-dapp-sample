@@ -6,7 +6,15 @@ import Home from './components/Home';
 
 function App() {
     return (
-        <MetaMaskProvider>
+        <MetaMaskProvider
+            sdkOptions={{
+                dappMetadata: {
+                name: "Example React Dapp",
+                url: "http://localhost:8545",
+                },
+                // Other options.
+            }}
+        >
             <Router>
                 <Menu />
                 <Routes>

@@ -11,19 +11,18 @@
   },
   "dependencies": {
     "@emotion/react": "^11.11.1",
-    "@emotion/styled": "^11.11.0",
-    "@metamask/sdk-react": "^0.10.1",
-    "@mui/icons-material": "^5.14.16",
-    "@mui/material": "^5.14.16",
+    "@emotion/styled": "^11.11.1",
+    "@metamask/sdk-react": "^0.31.1",
+    "@mui/icons-material": "^6.1.10",
+    "@mui/material": "^6.1.10",
     "bignumber.js": "^9.1.2",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-router-dom": "^6.18.0",
-    "web3": "^4.2.1"
+    "web3": "^4.16.0"
   },
   "devDependencies": {
-    "@nomicfoundation/hardhat-web3-v4": "^1.0.0",
-    "parcel": "^2.10.0",
+    "parcel": "^2.13.2",
     "process": "^0.11.10"
   }
 }
