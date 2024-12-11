@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useSDK } from '@metamask/sdk-react';
 import Web3 from 'web3';
 
@@ -6,13 +6,33 @@ import { Button, Card, CardContent, TextField, Typography, Divider, List, ListSu
 import ERC20 from '../contracts/ERC20.json';  // Assume the path to ERC20.json is correct
 
 function TokenComponent() {
-    const { connected, provider, account } = useSDK();
+    const { sdk, connected, connecting, provider, chainId } = useSDK();
+    const [account, setAccount] = useState(null);
     const [contractAddress, setContractAddress] = useState('');
     const [recipientAddress, setRecipientAddress] = useState('');
     const [transferAmount, setTransferAmount] = useState('');
     const [tokenBalance, setTokenBalance] = useState(null);
     const [transactionHashes, setTransactionHashes] = useState([]);
 
+    
+    // Componentロード時にMetaMaskに接続する
+    useEffect(() => {
+        const fetchAccountData = async () => {
+            if (connected) {
+                try {
+                    const accounts = await sdk?.connect();
+                    const account = accounts?.[0];
+                    setAccount(account);
+                } catch (error) {
+                    console.error('Error fetching account data:', error);
+                }
+            }
+        };
+
+        fetchAccountData();
+    }, [provider]);
+
+    // コントラクトの情報を取得する関数
     const loadContract = async () => {
         if (connected && provider && contractAddress) {
             const web3 = new Web3(provider);
@@ -27,6 +47,7 @@ function TokenComponent() {
         }
     };
 
+    // トークンの送金を行う関数
     const handleTransfer = async () => {
         if (connected && provider && contractAddress && recipientAddress && transferAmount) {
             const web3 = new Web3(provider);
