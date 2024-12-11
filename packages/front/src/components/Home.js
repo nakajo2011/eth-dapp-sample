@@ -73,15 +73,7 @@ function Home() {
     useEffect(() => {
         const fetchAccountData = async () => {
             if (connected) {
-                try {
-                    const accounts = await provider.request({ method: 'eth_requestAccounts' });
-                    setAccount(accounts[0]);
-                    const balance = await web3.eth.getBalance(accounts[0]);
-                    setBalance(balance);
-                    setFormattedBalance(web3.utils.fromWei(balance, 'ether'));
-                } catch (error) {
-                    console.error("Failed to fetch account data", error);
-                }
+              connect();
             }
         };
 
