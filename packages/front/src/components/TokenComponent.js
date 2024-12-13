@@ -18,9 +18,10 @@ function TokenComponent() {
     // Componentロード時にMetaMaskに接続する
     useEffect(() => {
         const fetchAccountData = async () => {
-            if (connected) {
+            if (provider != null) {
                 try {
-                    const accounts = await sdk?.connect();
+                    web3 = new Web3(provider);
+                    const accounts = await web3.eth.getAccounts();
                     const account = accounts?.[0];
                     setAccount(account);
                 } catch (error) {
@@ -34,7 +35,7 @@ function TokenComponent() {
 
     // コントラクトの情報を取得する関数
     const loadContract = async () => {
-        if (connected && provider && contractAddress) {
+        if (provider != null && contractAddress) {
             const web3 = new Web3(provider);
             const contract = new web3.eth.Contract(ERC20.abi, contractAddress);
             try {
