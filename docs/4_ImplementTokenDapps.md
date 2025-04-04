@@ -11,7 +11,7 @@ ERC20 Tokenの残高確認と送金ができる機能を持つDappsの作成方�
 
 ## 1. Web3.jsのインストール
 ```bash
-yarn add @nomicfoundation/hardhat-web3-v4
+yarn add @nomicfoundation/hardhat-web3-v4 web3
 ```
 
 ## 2. **ERC20トークンのABIの保存**:

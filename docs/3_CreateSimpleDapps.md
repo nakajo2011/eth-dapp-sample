@@ -17,8 +17,12 @@ cd packages/front
 
 ### 1-2. **Material-UIとRoutingライブラリのインストール:**
 ```bash
-yarn add @mui/material @emotion/react @emotion/styled react-router-dom
+yarn add @mui/material @emotion/react @emotion/styled react-router
 ```
+
+> [!IMPORTANT]  
+> 演習問題1から続けてチャレンジしている人はhardhatの開発用ノードを`Ctrl+C`で止めておきましょう。  
+> 止めておかないと、ライブラリのインストールに失敗してしまいます。  
 
 ### 1-3. **HTMLファイルの作成:**
 
@@ -81,7 +85,7 @@ SPAのメニューを表示するためのコンポーネントを作成しま�
 **src/components/Menu.js**:
 ```javascript
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { Link } from 'react-router';
 import { AppBar, Toolbar, Typography, Button } from '@mui/material';
 
 function Menu() {
@@ -110,7 +114,7 @@ export default Menu;
 **src/App.js**:
 ```javascript
 import React from 'react';
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import { BrowserRouter as Router, Routes, Route } from 'react-router';
 import Menu from './components/Menu';
 import Home from './components/Home';
 
@@ -177,7 +181,7 @@ yarn add @metamask/sdk-react bignumber.js
 **src/App.js**:
 ```javascript
 import React from 'react';
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import { BrowserRouter as Router, Routes, Route } from 'react-router';
 import { MetaMaskProvider } from '@metamask/sdk-react';
 import Menu from './components/Menu';
 import Home from './components/Home';
